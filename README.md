@@ -16,6 +16,10 @@ An interactive web-based Sorting Algorithm Visualizer developed using HTML, CSS,
 - Performance visualization
 - Responsive user interface
 
+## 🔗 Live Demo
+
+[View Live Project](https://captainsanjay247.github.io/Sorting-Algorithm-Visualizer/)
+
 ## Sorting Algorithms
 
 - Bubble Sort
