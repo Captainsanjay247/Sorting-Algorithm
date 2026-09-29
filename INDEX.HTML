@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sorting Algorithm Visualizer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="hero">
+        <div>
+            <h1>Sorting Algorithm <span>Visualizer</span></h1>
+            <p>Visualize • Understand • Compare • Learn</p>
+        </div>
+
+        <div class="quote">
+            Algorithms turn problems<br>
+            into progress.
+        </div>
+    </header>
+
+
+    <!-- CONTROLS -->
+    <section class="controls">
+
+        <div class="control-group">
+            <label>Algorithm</label>
+
+            <select id="algorithm">
+                <option value="quick">Quick Sort</option>
+                <option value="bubble">Bubble Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="insertion">Insertion Sort</option>
+                <option value="merge">Merge Sort</option>
+                <option value="heap">Heap Sort</option>
+                <option value="shell">Shell Sort</option>
+                <option value="counting">Counting Sort</option>
+                <option value="radix">Radix Sort</option>
+            </select>
+        </div>
+
+
+        <div class="control-group">
+            <label>Array Size</label>
+
+            <select id="arraySize">
+                <option value="25">25</option>
+                <option value="50" selected>50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+
+
+        <div class="control-group speed-control">
+            <label>Speed</label>
+
+            <div class="speed-row">
+                <input
+                    type="range"
+                    id="speed"
+                    min="1"
+                    max="100"
+                    value="50"
+                >
+
+                <span id="speedValue">50%</span>
+            </div>
+        </div>
+
+
+        <div class="buttons">
+            <button id="generateBtn" class="btn purple">
+                ⟳ Generate Array
+            </button>
+
+            <button id="startBtn" class="btn green">
+                ▶ Start
+            </button>
+
+            <button id="pauseBtn" class="btn yellow">
+                ❚❚ Pause
+            </button>
+
+            <button id="resetBtn" class="btn red">
+                ↻ Reset
+            </button>
+        </div>
+
+    </section>
+
+
+    <!-- VISUALIZATION -->
+    <section class="visual-card">
+
+        <div class="visual-header">
+
+            <div>
+                <h2>▥ &nbsp; Array Visualization</h2>
+                <p>Watch the algorithm sort the array in real-time</p>
+            </div>
+
+            <div class="legend">
+
+                <span>
+                    <i class="dot blue"></i>
+                    Unsorted
+                </span>
+
+                <span>
+                    <i class="dot pink"></i>
+                    Comparing
+                </span>
+
+                <span>
+                    <i class="dot yellow"></i>
+                    Swapping
+                </span>
+
+                <span>
+                    <i class="dot green-dot"></i>
+                    Sorted
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div id="bars" class="bars"></div>
+
+    </section>
+
+
+    <!-- STATS -->
+    <section class="stats">
+
+        <div class="stat">
+            <div class="stat-icon blue-icon">↔</div>
+
+            <div>
+                <small>Comparisons</small>
+                <strong id="comparisons">0</strong>
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div class="stat-icon yellow-icon">⇄</div>
+
+            <div>
+                <small>Swaps</small>
+                <strong id="swaps">0</strong>
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div class="stat-icon green-icon">◷</div>
+
+            <div>
+                <small>Time Elapsed</small>
+                <strong id="time">0.00s</strong>
+            </div>
+        </div>
+
+
+        <div class="stat">
+            <div class="stat-icon purple-icon">▥</div>
+
+            <div>
+                <small>Status</small>
+                <strong id="status">Ready</strong>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- LOWER GRID -->
+    <section class="lower-grid">
+
+        <!-- ALGORITHM INFORMATION -->
+        <div class="panel algorithm-info">
+
+            <h2>ⓘ &nbsp; Algorithm Information</h2>
+
+            <h3 id="algorithmName">Quick Sort</h3>
+
+            <p id="algorithmDescription">
+                Quick Sort is a divide-and-conquer algorithm that
+                selects a pivot element and partitions the array into
+                two subarrays, then recursively sorts the subarrays.
+            </p>
+
+
+            <div class="complexity-grid">
+
+                <div>
+                    <small>Best Case</small>
+                    <strong id="best">O(n log n)</strong>
+                </div>
+
+                <div>
+                    <small>Average Case</small>
+                    <strong id="average">O(n log n)</strong>
+                </div>
+
+                <div>
+                    <small>Worst Case</small>
+                    <strong id="worst">O(n²)</strong>
+                </div>
+
+                <div>
+                    <small>Space Complexity</small>
+                    <strong id="space">O(log n)</strong>
+                </div>
+
+                <div>
+                    <small>Stable</small>
+                    <strong id="stable">No</strong>
+                </div>
+
+                <div>
+                    <small>In-place</small>
+                    <strong id="inplace">Yes</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERFORMANCE -->
+        <div class="panel">
+
+            <h2>▥ &nbsp; Performance Analysis</h2>
+
+            <div class="chart">
+
+                <div class="chart-row">
+                    <span>Bubble</span>
+                    <div class="bar-track">
+                        <div class="chart-bar blue-bar" style="width:90%">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Selection</span>
+                    <div class="bar-track">
+                        <div class="chart-bar blue-bar" style="width:55%">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Insertion</span>
+                    <div class="bar-track">
+                        <div class="chart-bar blue-bar" style="width:65%">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Merge</span>
+                    <div class="bar-track">
+                        <div class="chart-bar blue-bar" style="width:20%">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Quick</span>
+                    <div class="bar-track">
+                        <div class="chart-bar purple-bar" style="width:15%">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Heap</span>
+                    <div class="bar-track">
+                        <div class="chart-bar purple-bar" style="width:25%">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="chart-legend">
+                <span>
+                    <i class="dot blue"></i>
+                    Comparisons
+                </span>
+
+                <span>
+                    <i class="dot purple"></i>
+                    Swaps
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- CUSTOM ARRAY -->
+        <div class="panel custom-array">
+
+            <h2>✎ &nbsp; Custom Array</h2>
+
+            <div class="custom-input">
+
+                <input
+                    type="text"
+                    id="customInput"
+                    placeholder="Enter numbers (e.g., 64, 34, 25, 12, 22)"
+                >
+
+                <button id="setArrayBtn">
+                    Set Array
+                </button>
+
+            </div>
+
+
+            <p>Quick Examples:</p>
+
+            <div class="examples">
+
+                <button id="randomBtn">Random</button>
+
+                <button id="sortedBtn">Sorted</button>
+
+                <button id="reverseBtn">Reverse</button>
+
+                <button id="nearlyBtn">Nearly Sorted</button>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUOTE -->
+        <div class="panel quote-panel">
+
+            <div class="big-quote">“</div>
+
+            <p>
+                Sorting is not just about arranging numbers,
+                it's about understanding how algorithms think.
+            </p>
+
+            <span>
+                — Keep Learning, Keep Building —
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <span>Built with <b>♥</b> by <strong>Sanjay</strong></span>
+
+        <span>Sorting Algorithm Visualizer</span>
+
+        <div>
+            <span>Learn</span>
+            <span>Practice</span>
+            <span>Improve</span>
+            <span>Grow</span>
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
